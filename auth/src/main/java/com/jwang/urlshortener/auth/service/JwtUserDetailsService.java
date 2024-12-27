@@ -1,9 +1,10 @@
+/* (C)2024 */
 package com.jwang.urlshortener.auth.service;
 
 import com.jwang.urlshortener.auth.dao.UserDao;
 import com.jwang.urlshortener.auth.model.UserDTO;
 import com.jwang.urlshortener.auth.model.UserEntity;
-
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -11,16 +12,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
 
-    @Autowired
-    private UserDao userDao;
+    @Autowired private UserDao userDao;
 
-    @Autowired
-    private PasswordEncoder bcryptEncoder;
+    @Autowired private PasswordEncoder bcryptEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -28,8 +25,8 @@ public class JwtUserDetailsService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("User not found with username: " + username);
         }
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
-                new ArrayList<>());
+        return new org.springframework.security.core.userdetails.User(
+                user.getUsername(), user.getPassword(), new ArrayList<>());
     }
 
     public UserEntity save(UserDTO user) {
@@ -39,7 +36,7 @@ public class JwtUserDetailsService implements UserDetailsService {
         return userDao.save(newUser);
     }
 
-    public boolean usernameExists(UserDTO user){
+    public boolean usernameExists(UserDTO user) {
         return userDao.findByUsername(user.getUsername()) != null;
     }
 }

@@ -1,22 +1,18 @@
+/* (C)2024 */
 package com.jwang.shortener.service;
 
 import com.jwang.shortener.model.UrlEntity;
 import com.jwang.shortener.repository.UrlRepository;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
 public class UrlService {
-
 
     private final UrlRepository urlRepository;
 
@@ -28,36 +24,38 @@ public class UrlService {
     }
 
     @Transactional
-    public String generateShortenUrl(String originalUrl, LocalDate expireDate, String username){
+    public String generateShortenUrl(String originalUrl, LocalDate expireDate, String username) {
         log.info("Start generateShortenUrl");
         String hash = (String) hashFeignService.retrieve().get("data");
-        log.info("Retrieved a hash from hash service: "+hash);
+        log.info("Retrieved a hash from hash service: " + hash);
         urlRepository.save(new UrlEntity(hash, originalUrl, expireDate, username));
         log.info("Saved hash and original to db");
         return hash;
     }
 
     @Transactional
-    public String customizeShortenUrl(String originalUrl, String hash, LocalDate expireDate, String username){
+    public String customizeShortenUrl(
+            String originalUrl, String hash, LocalDate expireDate, String username) {
         log.info("Start customizeShortenUrl");
         // if hash exists, it has been usedn
-        if(urlRepository.existsById(hash)){
+        if (urlRepository.existsById(hash)) {
             return null;
-        }else{
+        } else {
             urlRepository.save(new UrlEntity(hash, originalUrl, expireDate, username));
-            // call hash service to mark this url as used and remove it if it has been auto generated
+            // call hash service to mark this url as used and remove it if it has been auto
+            // generated
             hashFeignService.markHashAsUsed(hash);
             return hash;
         }
     }
 
     @Transactional
-    public String retrieveOriginalUrl(String hash){
+    public String retrieveOriginalUrl(String hash) {
         log.info("Start retrieveOriginalUrl");
         Optional<UrlEntity> urlEntity = urlRepository.findById(hash);
-        if(urlEntity.isPresent()){
+        if (urlEntity.isPresent()) {
             log.info("Found original Url");
-            if(urlEntity.get().getExpireDate().isBefore(LocalDate.now())){
+            if (urlEntity.get().getExpireDate().isBefore(LocalDate.now())) {
                 log.info("Url expired");
                 urlRepository.deleteById(urlEntity.get().getHash());
                 hashFeignService.markHashAsUnUsed(urlEntity.get().getHash());
@@ -69,7 +67,7 @@ public class UrlService {
     }
 
     @Transactional
-    public List<UrlEntity> getUserUrls(String username){
+    public List<UrlEntity> getUserUrls(String username) {
         log.info("Start getUserUrls for: " + username);
         return urlRepository.findUrlEntitiesByUsername(username);
     }

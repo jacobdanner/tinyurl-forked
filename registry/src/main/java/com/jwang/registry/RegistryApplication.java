@@ -1,3 +1,4 @@
+/* (C)2024 */
 package com.jwang.registry;
 
 import org.springframework.boot.SpringApplication;
@@ -11,5 +12,4 @@ public class RegistryApplication {
     public static void main(String[] args) {
         SpringApplication.run(RegistryApplication.class, args);
     }
-
 }

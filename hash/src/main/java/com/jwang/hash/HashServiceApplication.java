@@ -1,3 +1,4 @@
+/* (C)2024 */
 package com.jwang.hash;
 
 import org.springframework.boot.SpringApplication;
@@ -8,7 +9,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @SpringBootApplication
 @EnableMongoRepositories
 @EnableDiscoveryClient
-//@EnableEurekaClient
+// @EnableEurekaClient
 public class HashServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(HashServiceApplication.class, args);

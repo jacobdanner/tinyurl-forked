@@ -1,8 +1,8 @@
+/* (C)2024 */
 package com.jwang.urlshortener.auth.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "user")
@@ -10,11 +10,9 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column
-    private String username;
-    @Column
-    @JsonIgnore
-    private String password;
+
+    @Column private String username;
+    @Column @JsonIgnore private String password;
 
     public String getUsername() {
         return username;

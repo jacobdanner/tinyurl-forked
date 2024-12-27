@@ -1,3 +1,4 @@
+/* (C)2024 */
 package com.jwang.schedule;
 
 import org.springframework.boot.SpringApplication;
@@ -11,5 +12,4 @@ public class ScheduleApplication {
     public static void main(String[] args) {
         SpringApplication.run(ScheduleApplication.class, args);
     }
-
 }

@@ -1,3 +1,4 @@
+/* (C)2024 */
 package com.jwang.hash.model;
 
 import lombok.AllArgsConstructor;
@@ -11,6 +12,5 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @Document("usedhash")
 public class UsedHashEntity {
-    @Id
-    private String hash;
+    @Id private String hash;
 }

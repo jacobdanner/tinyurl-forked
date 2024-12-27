@@ -1,3 +1,4 @@
+/* (C)2024 */
 package com.jwang.shortener;
 
 import org.springframework.boot.SpringApplication;
@@ -15,5 +16,4 @@ public class ShortenerApplication {
     public static void main(String[] args) {
         SpringApplication.run(ShortenerApplication.class, args);
     }
-
 }

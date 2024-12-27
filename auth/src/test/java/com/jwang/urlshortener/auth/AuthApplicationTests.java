@@ -1,12 +1,11 @@
+/* (C)2024 */
 package com.jwang.urlshortener.auth;
 
-//import org.springframework.boot.test.context.SpringBootTest;
+// import org.springframework.boot.test.context.SpringBootTest;
 
-//@SpringBootTest
+// @SpringBootTest
 class AuthApplicationTests {
 
-    //@Test
-    void contextLoads() {
-    }
-
+    // @Test
+    void contextLoads() {}
 }

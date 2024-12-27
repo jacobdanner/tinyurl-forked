@@ -1,7 +1,8 @@
+/* (C)2024 */
 package com.jwang.urlshortener.auth.model;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 public class UserDTO {
     @NotEmpty(message = "username must not be empty")
@@ -9,7 +10,7 @@ public class UserDTO {
     private String username;
 
     @NotEmpty(message = "password must not be empty")
-    @Size(min = 7, max = 15,message = "password must be between 7 and 15 chars")
+    @Size(min = 7, max = 15, message = "password must be between 7 and 15 chars")
     private String password;
 
     public String getUsername() {

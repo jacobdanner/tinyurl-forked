@@ -22,7 +22,7 @@ The backend is developed with a distributed microservice architecture, consistin
 ### Service Responsibilities
 *  **Hash Service** manages a collection of pregenerated hashes to be consumed by the **Shortening Service**, also maintains a collection of used hashes.
 
-* **Shortening Service** is the main application that is responsible for tinyurl generation, redirection to original URL, and listing out the urls a user has generated. It takes in a URL and generates a shortened URL with a hash retrieved from **Hash Service**, also maintains a collection of documents that maps a hash to its original URL and other fields such as expiration date and username. 
+* **Shortening Service** is the main application that is responsible for tinyurl generation, redirection to original URL, and listing out the urls a user has generated. It takes in a URL and generates a shortened URL with a hash retrieved from **Hash Service**, also maintains a collection of documents that maps a hash to its original URL and other fields such as expiration date and username.
 
 * **Scheduler Service** is running on a cronjob. It is responsible for generating new hashes when the count of available hashes in the database is low. It is also responsible for recycling hashes when the user specified expration date has come.
 
