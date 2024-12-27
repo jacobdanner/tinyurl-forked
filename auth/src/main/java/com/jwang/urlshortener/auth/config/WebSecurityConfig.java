@@ -31,31 +31,32 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-
-
     @Bean
-    public org.springframework.security.web.SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+    org.springframework.security.web.SecurityFilterChain filterChain(HttpSecurity httpSecurity)
+            throws Exception {
         // We don't need CSRF for this example
         return httpSecurity
-                .csrf(csrf -> csrf
-                        .disable())
+                .csrf(csrf -> csrf.disable())
                 // dont authenticate this particular request
-                .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/authenticate", "/register")
-                        .permitAll()
-                        .
-                                // all other requests need to be authenticated
-                                anyRequest()
-                        .authenticated())
+                .authorizeHttpRequests(
+                        requests ->
+                                requests.requestMatchers("/authenticate", "/register")
+                                        .permitAll()
+                                        .
+                                        // all other requests need to be authenticated
+                                        anyRequest()
+                                        .authenticated())
                 .
-                        // make sure we use stateless session; session won't be used to
-                        // store user's state.
-                        sessionManagement(management -> management
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)).build();
+                // make sure we use stateless session; session won't be used to
+                // store user's state.
+                sessionManagement(
+                        management ->
+                                management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .build();
 
         // Add a filter to validate the tokens with every request
     }

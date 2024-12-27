@@ -9,6 +9,11 @@
   <artifactId>shortener</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>shortener</name>
+  <properties>
+    <commons-validator.version>1.9.0</commons-validator.version>
+    <!-- 0.12.6 is latest-->
+    <jjwt-api.version>0.9.1</jjwt-api.version>
+  </properties>
 
   <dependencies>
     <!--        <dependency>-->
@@ -26,7 +31,7 @@
     <dependency>
       <groupId>io.jsonwebtoken</groupId>
       <artifactId>jjwt</artifactId>
-      <version>0.9.1</version>
+      <version>${jjwt-api.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -64,7 +69,7 @@
     <dependency>
       <groupId>commons-validator</groupId>
       <artifactId>commons-validator</artifactId>
-      <version>1.7</version>
+      <version>${commons-validator.version}</version>
     </dependency>
   </dependencies>
 

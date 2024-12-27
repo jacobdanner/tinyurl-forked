@@ -1,15 +1,14 @@
 /* (C)2024 */
 package com.jwang.urlshortener.auth.model;
 
-import java.io.Serial;
-import java.io.Serializable;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
+import java.io.Serial;
+import java.io.Serializable;
 
 public class JwtRequest implements Serializable {
 
-    @Serial
-    private static final long serialVersionUID = 5926468583005150707L;
+    @Serial private static final long serialVersionUID = 5926468583005150707L;
 
     @NotEmpty(message = "username must not be empty")
     @Size(min = 5, max = 15, message = "username must be between 5 and 15 chars")
